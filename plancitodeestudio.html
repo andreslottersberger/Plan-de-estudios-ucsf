@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Plan de estudios - Relaciones Internacionales (UCSF)</title>
+  <style>
+  body {
+    background-color: #e6f0fa;
+    color: #222;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 40px 40px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .anio {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1f2c3b;
+  }
+
+  .grupo-materias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .materia {
+    border: 2px solid #90b4d6;
+    border-radius: 12px;
+    padding: 15px;
+    width: 220px;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .materia:hover {
+    transform: translateY(-3px);
+  }
+
+  .nocursada {
+    background-color: #fff;
+  }
+
+  .encurso {
+    background-color: #fff8c4;
+  }
+
+  .aprobada {
+    background-color: #d8f8d4;
+  }
+
+  .promedio-box {
+    margin: 30px auto;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #cbe3f5;
+    color: #000;
+    padding: 10px 30px;
+    border-radius: 10px;
+    display: block;
+    width: fit-content;
+  }
+
+  button {
+    margin: 5px 4px 0;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #3182ce;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+  }
+
+  button:hover {
+    background-color: #2563a9;
+  }
+
+  .nota-box {
+    margin-top: 10px;
+  }
+
+  .nota-input {
+    width: 50px;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>Plan de estudios  - Relaciones Internacionales (UCSF)</h1>
+
+<div class="promedio-box">
+  Promedio general: <span id="promedio">-</span><br>
+  Materias aprobadas: <span id="contador-aprobadas">0</span>
+</div>
+
+<div id="malla">
+
+  <div class="anio">1° Año</div>
+<div class="grupo-materias">
+
+  <div class="materia" id="fundamentos">
+    <strong>Fundamentos de Ciencia Política</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('fundamentos')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('fundamentos', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="procesos">
+    <strong>Procesos Políticos Mundiales</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('procesos')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('procesos', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="filosofia">
+    <strong>Filosofía</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('filosofia')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('filosofia', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="sociologia">
+    <strong>Teoría Sociológica</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('sociologia')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('sociologia', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="historia-ideas">
+    <strong>Historia de las Instituciones e Ideas Argentinas</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('historia-ideas')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('historia-ideas', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="economia">
+    <strong>Economía Política</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('economia')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('economia', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="metodo1">
+    <strong>Metodología de la Investigación Científica I</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('metodo1')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('metodo1', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="ingles1">
+    <strong>Inglés I</strong><br>
+    Régimen: Anual<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('ingles1')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('ingles1', this.value)">
+    </div>
+  </div>
+
+</div>
+
+  <div class="anio">2° Año</div>
+<div class="grupo-materias">
+
+  <div class="materia" id="tri">
+    <strong>Teoría de las Relaciones Internacionales</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('tri')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('tri', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="ri">
+    <strong>Relaciones Internacionales</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('ri')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('ri', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="gobierno">
+    <strong>Gobierno y Administración Pública</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('gobierno')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('gobierno', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="estado-sociedad">
+    <strong>Estado y Sociedad en América Latina</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('estado-sociedad')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('estado-sociedad', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="constitucional">
+    <strong>Derecho Constitucional</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('constitucional')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('constitucional', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="teologia1">
+    <strong>Teología Dogmática I (2002)</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('teologia1')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('teologia1', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="ingles2">
+    <strong>Inglés II</strong><br>
+    Régimen: Anual<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('ingles2')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('ingles2', this.value)">
+    </div>
+  </div>
+
+</div>
+<<div class="anio">3° Año</div>
+<div class="grupo-materias">
+
+  <div class="materia" id="teoria-politica">
+    <strong>Teoría Política</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('teoria-politica')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('teoria-politica', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="estructura-ap">
+    <strong>Estructura de la Administración Pública</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('estructura-ap')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('estructura-ap', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="dip">
+    <strong>Derecho Internacional Público</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('dip')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('dip', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="eco-internacional">
+    <strong>Economía Internacional</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('eco-internacional')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('eco-internacional', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="metodo2">
+    <strong>Metodología de la Investigación Científica II</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('metodo2')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('metodo2', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="estadistica">
+    <strong>Estadística</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('estadistica')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('estadistica', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="teologia2">
+    <strong>Teología Dogmática II (2002)</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('teologia2')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('teologia2', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="ingles3">
+    <strong>Inglés III</strong><br>
+    Régimen: Anual<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('ingles3')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('ingles3', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="filo-politica">
+    <strong>Filosofía Política</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('filo-politica')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('filo-politica', this.value)">
+    </div>
+  </div>
+
+</div>
+<div class="anio">4° Año</div>
+<div class="grupo-materias">
+
+  <div class="materia" id="pec">
+    <strong>Políticas Exteriores Comparadas</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('pec')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('pec', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="spc">
+    <strong>Sistemas Políticos Comparados</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('spc')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('spc', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="cooperacion">
+    <strong>Cooperación e Integración Latinoamericana</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('cooperacion')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('cooperacion', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="pila">
+    <strong>Política Internacional Latinoamericana y Argentina</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('pila')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('pila', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="diplomacia">
+    <strong>Diplomacia Multilateral y Organismos Internacionales</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Libre<br>
+    <button onclick="cambiarEstado('diplomacia')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('diplomacia', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="conflictos">
+    <strong>Conflictos Mundiales y Seguridad Internacional</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('conflictos')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('conflictos', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="comercio">
+    <strong>Comercio Internacional</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('comercio')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('comercio', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="teologia-moral">
+    <strong>Teología Moral y Doctrina Social de la Iglesia</strong><br>
+    Régimen: Anual<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('teologia-moral')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('teologia-moral', this.value)">
+    </div>
+  </div>
+
+  <div class="materia" id="tesina">
+    <strong>Taller de Tesina</strong><br>
+    Régimen: Cuatrimestral<br>
+    Cursado: Regular<br>
+    <button onclick="cambiarEstado('tesina')">Cambiar estado</button>
+    <div class="nota-box" style="display:none;">
+      Nota: <input class="nota-input" type="number" min="1" max="10" onchange="actualizarNota('tesina', this.value)">
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+  const estados = ['nocursada', 'encurso', 'aprobada'];
+  const materias = {};
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const elementos = document.querySelectorAll('.materia');
+    elementos.forEach(elem => {
+      const id = elem.id;
+      const estadoGuardado = localStorage.getItem(`estado-${id}`) || 'nocursada';
+      const notaGuardada = localStorage.getItem(`nota-${id}`);
+      materias[id] = { estado: estadoGuardado, nota: notaGuardada ? parseInt(notaGuardada) : null };
+      actualizarVisual(id);
+    });
+    calcularPromedio();
+  });
+
+  function cambiarEstado(id) {
+    const index = estados.indexOf(materias[id].estado);
+    const nuevoEstado = estados[(index + 1) % estados.length];
+    materias[id].estado = nuevoEstado;
+    localStorage.setItem(`estado-${id}`, nuevoEstado);
+
+    if (nuevoEstado === 'aprobada') {
+      document.querySelector(`#${id} .nota-box`).style.display = 'block';
+    } else {
+      materias[id].nota = null;
+      localStorage.removeItem(`nota-${id}`);
+      document.querySelector(`#${id} .nota-box`).style.display = 'none';
+    }
+
+    actualizarVisual(id);
+    calcularPromedio();
+  }
+
+  function actualizarNota(id, valor) {
+    const nota = parseInt(valor);
+    if (!isNaN(nota) && nota >= 1 && nota <= 10) {
+      materias[id].nota = nota;
+      localStorage.setItem(`nota-${id}`, nota);
+    } else {
+      materias[id].nota = null;
+      localStorage.removeItem(`nota-${id}`);
+    }
+    calcularPromedio();
+  }
+
+  function actualizarVisual(id) {
+    const elem = document.getElementById(id);
+    elem.classList.remove('nocursada', 'encurso', 'aprobada');
+    elem.classList.add(materias[id].estado);
+
+    if (materias[id].estado === 'aprobada') {
+      document.querySelector(`#${id} .nota-box`).style.display = 'block';
+      if (materias[id].nota) {
+        elem.querySelector('input').value = materias[id].nota;
+      }
+    } else {
+      document.querySelector(`#${id} .nota-box`).style.display = 'none';
+    }
+  }
+
+  function calcularPromedio() {
+  let total = 0;
+  let cantidad = 0;
+  let aprobadas = 0;
+  for (const id in materias) {
+    const mat = materias[id];
+    if (mat.estado === 'aprobada') {
+      aprobadas++;
+      if (mat.nota && mat.nota >= 4) {
+        total += mat.nota;
+        cantidad++;
+      }
+    }
+  }
+  const promedio = cantidad ? (total / cantidad).toFixed(2) : '-';
+  document.getElementById('promedio').textContent = promedio;
+  document.getElementById('contador-aprobadas').textContent = aprobadas;
+}
+</script>
+
+</body>
+</html>
